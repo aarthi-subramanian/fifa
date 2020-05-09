@@ -55,14 +55,14 @@ dim(test) # 4764 x 75
 ## Linear Regression model
 linear = lm(value~.,train)
 predLinear = predict(linear,newdata=test) # Note: Long run-time alert
-rmseLinear = sqrt(mean((predLinear-test$value)^2)); rmseLinear # 1.014019
+rmseLinear = sqrt(mean((predLinear-test$value)^2)); rmseLinear
 summary(linear)
 
 ## Random Forest model
 set.seed(100)
 forest = randomForest(value~., data=train, ntree = 500) # Note: if this step takes a while, run `ntree=2` as a sample
 predForest = predict(forest,newdata=test)
-rmseForest = sqrt(mean((predForest-test$value)^2)); rmseForest # 0.5196204
+rmseForest = sqrt(mean((predForest-test$value)^2)); rmseForest
 names(forest)
 summary(forest)
 plot(forest)
@@ -144,22 +144,22 @@ lm1 = lm(value~.,train1)
 lm2 = lm(value~.,train2)
 pred1 = predict(lm1,newdata=test1)
 pred2 = predict(lm2,newdata=test2)
-rmse1 = sqrt(mean((pred1-test$value)^2)); rmse1 # 4.971598
-rmse2 = sqrt(mean((pred2-test$value)^2)); rmse2 # 5.610234
+rmse1 = sqrt(mean((pred1-test$value)^2)); rmse1
+rmse2 = sqrt(mean((pred2-test$value)^2)); rmse2
 predOverall = c(pred1,pred2)
 qualityOverall = c(test1$value,test2$value)
 sseOverall = sum((predOverall - qualityOverall)^2); sseOverall
-rmseOverall = sqrt(mean((predOverall-test$value)^2)); rmseOverall # 7.211491
+rmseOverall = sqrt(mean((predOverall-test$value)^2)); rmseOverall
 
 # Random Forest model
 forest1 = randomForest(value~., data=train1, ntree = 500)
 forest2 = randomForest(value~., data=train2, ntree = 500)
 pred1 = predict(forest1,newdata=test1)
 pred2 = predict(forest2,newdata=test1)
-rmse1 = sqrt(mean((pred1-test$value)^2)); rmse1 # 4.970397
-rmse2 = sqrt(mean((pred2-test$value)^2)); rmse2 # 4.954434
+rmse1 = sqrt(mean((pred1-test$value)^2)); rmse1
+rmse2 = sqrt(mean((pred2-test$value)^2)); rmse2
 predOverall = c(pred1,pred2)
-rmseOverall = sqrt(mean((predOverall-test$value)^2)); rmseOverall # 4.97489
+rmseOverall = sqrt(mean((predOverall-test$value)^2)); rmseOverall
 
 
 ## Plot feature importance charts
